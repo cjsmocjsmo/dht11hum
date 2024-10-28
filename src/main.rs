@@ -62,7 +62,7 @@ fn main() -> Result<()> {
         println!("Humidity: {:.2}%", humi);
         println!("Timestamp: {}", timestamp);
 
-        std::thread::sleep(std::time::Duration::from_secs(180));
+        std::thread::sleep(std::time::Duration::from_secs(5));
         }
 
     Ok(())
