@@ -53,7 +53,7 @@ fn main() -> Result<()> {
         let timestamp = Local::now().format("%Y-%m-%d-%H-%M").to_string();
         // Insert the data into the database
         conn.execute(
-            "INSERT INTO sensor_readings (tempc, tempf, humi, timestamp) VALUES (?1, ?2, ?3, CURRENT_TIMESTAMP)",
+            "INSERT INTO sensor_readings (tempc, tempf, humi, timestamp) VALUES (?1, ?2, ?3, ?4)",
             params![tempc, tempf, humi, timestamp],
         )?;
 
