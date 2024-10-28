@@ -47,8 +47,10 @@ fn main() -> Result<()> {
     while foo {
         let reading = dht.read().unwrap();
 
-        let tempc = reading.temperature();
-        let tempf = tempc * 9.0 / 5.0 + 32.0;
+        let temp = reading.temperature();
+        let tempc = format!("{:.2}", temp);
+        let tempff = temp * 9.0 / 5.0 + 32.0;
+        let tempf = format!("{:.2}", tempff);
         let humi = reading.humidity();
         let timestamp = Local::now().format("%Y-%m-%d-%H-%M").to_string();
         // Insert the data into the database
@@ -62,7 +64,7 @@ fn main() -> Result<()> {
         println!("Humidity: {:.2}%", humi);
         println!("Timestamp: {}", timestamp);
 
-        std::thread::sleep(std::time::Duration::from_secs(5));
+        std::thread::sleep(std::time::Duration::from_secs(60));
         }
 
     Ok(())
