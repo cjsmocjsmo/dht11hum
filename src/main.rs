@@ -52,7 +52,7 @@ fn main() -> Result<()> {
         let tempff = temp * 9.0 / 5.0 + 32.0;
         let tempf = format!("{:.2}", tempff);
         let humi = reading.humidity();
-        let timestamp = Local::now().format("%Y-%m-%d-%H-%M").to_string();
+        let timestamp = Local::now().format("%Y-%m-%d-%H:%M").to_string();
         // Insert the data into the database
         conn.execute(
             "INSERT INTO sensor (tempc, tempf, humi, timestamp) VALUES (?1, ?2, ?3, ?4)",
