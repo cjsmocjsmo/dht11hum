@@ -21,7 +21,7 @@ use std::path::Path;
 
 fn main() -> Result<()> {
     // Initialize the SQLite database
-    let path = Path::new("/home/picam/dht11/sensor_data.db");
+    let path = Path::new("/home/picam/dht11hum/sensor_data.db");
     let conn = Connection::open(&path)?;
 
     // Create the table if it doesn't exist
