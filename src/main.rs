@@ -18,6 +18,7 @@
 use dht_mmap_rust::{Dht, DhtType};
 use rusqlite::{params, Connection, Result};
 use std::path::Path;
+use chrono::Local;
 
 fn main() -> Result<()> {
     // Initialize the SQLite database
@@ -31,7 +32,7 @@ fn main() -> Result<()> {
             tempc REAL NOT NULL,
             tempf REAL NOT NULL,
             humi REAL NOT NULL,
-            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+            timestamp TEXT NOT NULL
         )",
         [],
     )?;
@@ -49,17 +50,17 @@ fn main() -> Result<()> {
         let tempc = reading.temperature();
         let tempf = tempc * 9.0 / 5.0 + 32.0;
         let humi = reading.humidity();
-
+        let timestamp = Local::now().format("%Y-%m-%d-%H-%M").to_string();
         // Insert the data into the database
         conn.execute(
             "INSERT INTO sensor_readings (tempc, tempf, humi, timestamp) VALUES (?1, ?2, ?3, CURRENT_TIMESTAMP)",
-            params![tempc, tempf, humi],
+            params![tempc, tempf, humi, timestamp],
         )?;
 
         println!("Temperature (C): {:.2}", tempc);
         println!("Temperature (F): {:.2}", tempf);
-        println!("Humidity: {:.2}", humi);
-        println!("Timestamp: CURRENT_TIMESTAMP");
+        println!("Humidity: {:.2}%", humi);
+        println!("Timestamp: {}", timestamp);
 
         std::thread::sleep(std::time::Duration::from_secs(180));
         }
