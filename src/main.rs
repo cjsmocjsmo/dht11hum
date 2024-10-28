@@ -59,6 +59,7 @@ fn main() -> Result<()> {
         println!("Temperature (C): {:.2}", tempc);
         println!("Temperature (F): {:.2}", tempf);
         println!("Humidity: {:.2}", humi);
+        println!("Timestamp: CURRENT_TIMESTAMP");
 
         std::thread::sleep(std::time::Duration::from_secs(180));
         }
