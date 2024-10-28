@@ -59,8 +59,8 @@ fn main() -> Result<()> {
             params![tempc, tempf, humi, timestamp],
         )?;
 
-        println!("Temperature (C): {:.2}", tempc);
-        println!("Temperature (F): {:.2}", tempf);
+        println!("Temperature (C): {}", tempc);
+        println!("Temperature (F): {}", tempf);
         println!("Humidity: {:.2}%", humi);
         println!("Timestamp: {}", timestamp);
 
